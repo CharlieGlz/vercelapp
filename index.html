@@ -9,148 +9,62 @@
     padding: 0;
     background-color: #000;
     font-family: 'Arial', sans-serif;
-    overflow: hidden;
     color: #ff69b4;
-  }
-
-  .container {
-    position: relative;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    height: 100vh;
     flex-direction: column;
-    z-index: 1;
+    overflow: hidden;
   }
 
   h1 {
     font-size: 3em;
     margin-bottom: 20px;
-    color: #ff69b4;
+    text-align: center;
   }
 
-  p {
-    font-size: 1.2em;
-    max-width: 600px;
-    color: #ffb6c1;
-    margin-bottom: 30px;
-  }
-
-  button {
+  .btn {
     padding: 12px 24px;
     background-color: #ff69b4;
     color: #fff;
     border: none;
     border-radius: 30px;
-    font-size: 1em;
+    font-size: 1.2em;
     cursor: pointer;
-    margin: 5px;
-    box-shadow: 0 4px 15px rgba(255,105,180,0.5);
-    transition: all 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #ff85a1;
-    transform: scale(1.1);
-  }
-
-  .globo {
+    margin: 10px;
     position: absolute;
-    font-size: 30px;
-    animation: flotar 10s linear infinite;
   }
 
-  @keyframes flotar {
-    from { transform: translateY(100vh); opacity: 0; }
-    to { transform: translateY(-10vh); opacity: 1; }
+  #btnSi {
+    top: 60%;
+    left: 40%;
   }
 
-  .corazon {
-    position: absolute;
-    font-size: 50px;
-    cursor: pointer;
-    animation: pulse 3s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-
-  .confeti {
-    position: absolute;
-    font-size: 30px;
-    animation: caer 5s linear forwards;
-  }
-
-  @keyframes caer {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(100vh); }
+  #btnNo {
+    top: 60%;
+    left: 60%;
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>💖 Para Jaqueline 💖</h1>
-  <p>Querida Jaqueline, eres mi sol y mi luna, mi razón de sonreír. 💌</p>
-  <button onclick="mensajeSorpresa()">💬 Mensaje sorpresa</button>
-  <button onclick="confeti()">🎉 Explosión de confeti</button>
-</div>
+<h1>💖 ¿Me amas, Jaqueline? 💖</h1>
+<button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
+<button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
 
-<!-- Mini-juego de corazones -->
-<div id="corazones"></div>
-
-<!-- Globos flotantes 🎈 -->
 <script>
-  const globos = ["🎈","🎉","🎊","💝"];
-  for (let i = 0; i < 30; i++) {
-    let globo = document.createElement("div");
-    globo.classList.add("globo");
-    globo.innerText = globos[Math.floor(Math.random() * globos.length)];
-    globo.style.left = Math.random() * 100 + "vw";
-    globo.style.animationDuration = (10 + Math.random() * 10) + "s";
-    document.body.appendChild(globo);
-  }
+function mensajeSi() {
+  alert("¡Yo también te amo, Jaqueline! 💖💖💖");
+}
 
-  // Mini-juego: elige un corazón
-  for(let i=0;i<5;i++){
-    let c=document.createElement("div");
-    c.innerHTML="💖";
-    c.classList.add("corazon");
-    c.style.left=Math.random()*80+"vw";
-    c.style.top=Math.random()*80+"vh";
-    c.onclick=function(){
-      alert("¡Te ganaste un 'Te Amo' extra! 💖");
-    }
-    document.getElementById("corazones").appendChild(c);
-  }
-
-  // Mensaje sorpresa aleatorio
-  function mensajeSorpresa() {
-    const frases = [
-      "Eres mi persona favorita 💕",
-      "Tu sonrisa ilumina mis días 🌟",
-      "A tu lado todo es magia ✨",
-      "¿Sabías que eres mi sol y mi luna? 🌞🌙",
-      "Te amo más de lo que las palabras pueden decir 💖"
-    ];
-    alert(frases[Math.floor(Math.random() * frases.length)]);
-  }
-
-  // Explosión de confeti 🎉
-  function confeti() {
-    for (let i = 0; i < 50; i++) {
-      let conf = document.createElement("div");
-      conf.textContent = "🎉";
-      conf.classList.add("confeti");
-      conf.style.left = `${Math.random() * 100}vw`;
-      conf.style.top = `${Math.random() * 100}vh`;
-      document.body.appendChild(conf);
-      setTimeout(() => conf.remove(), 5000);
-    }
-  }
+function moverBoton() {
+  const btnNo = document.getElementById("btnNo");
+  const maxWidth = window.innerWidth - btnNo.offsetWidth;
+  const maxHeight = window.innerHeight - btnNo.offsetHeight;
+  btnNo.style.left = Math.random() * maxWidth + "px";
+  btnNo.style.top = Math.random() * maxHeight + "px";
+}
 </script>
 
 </body>

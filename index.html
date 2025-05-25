@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Jaqueline 💖</title>
+  <title>Para Jaqueline 💚</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #2b2b2b, #1a1a1a);
-      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      font-family: 'Courier New', monospace;
       overflow: hidden;
-      color: #fff;
+      color: #0f0;
     }
 
     .container {
@@ -29,7 +29,7 @@
       font-size: 3em;
       margin-bottom: 20px;
       animation: slideIn 2s ease-out;
-      color: #ff6b8a;
+      color: #0f0;
     }
 
     p {
@@ -37,13 +37,13 @@
       max-width: 600px;
       margin-bottom: 30px;
       animation: fadeIn 3s ease-out;
-      color: #e0e0e0;
+      color: #00ff00;
     }
 
     button {
       padding: 12px 24px;
-      background-color: #ff6b8a;
-      color: #fff;
+      background-color: #0f0;
+      color: #000;
       border: none;
       border-radius: 30px;
       font-size: 1em;
@@ -53,7 +53,7 @@
     }
 
     button:hover {
-      background-color: #ff85a1;
+      background-color: #33ff33;
       transform: scale(1.1);
     }
 
@@ -71,7 +71,7 @@
       position: fixed;
       font-size: 2em;
       animation: floatUp 10s linear infinite;
-      color: #ff6b8a;
+      color: #00ff00;
       opacity: 0.8;
       z-index: 0;
     }
@@ -86,10 +86,11 @@
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.95);
       justify-content: center; align-items: center;
       z-index: 999;
       flex-direction: column;
+      color: #0f0;
     }
 
     #surprise img {
@@ -98,35 +99,48 @@
       width: auto;
       height: auto;
       border-radius: 15px;
-      box-shadow: 0 0 30px rgba(255,255,255,0.8);
+      box-shadow: 0 0 30px rgba(0,255,0,0.8);
       transition: transform 0.3s ease;
     }
 
     #surprise button {
       margin-top: 20px;
-      background-color: #ff6b8a;
-      color: #fff;
+      background-color: #0f0;
+      color: #000;
       border: none;
       padding: 10px 20px;
       border-radius: 10px;
+    }
+
+    /* Efecto Matrix: caida de texto aleatorio */
+    .matrix {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: #0f0;
+      font-size: 14px;
+      pointer-events: none;
+      opacity: 0.2;
+      z-index: 0;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>💖 Para Jaqueline 💖</h1>
+  <h1>💚 Para Jaqueline 💚</h1>
   <p>
     Querida Jaqueline Alvarado,<br><br>
     Cada día contigo es una nueva aventura, y esta app es solo un pequeño regalo para recordarte cuánto te amo. 💌<br>
-    Eres mi sol, mi estrella y mi inspiración. Te amo más de lo que las palabras pueden decir. 🌟💖
+    Eres mi sol, mi estrella y mi inspiración. Te amo más de lo que las palabras pueden decir. 🌟💚
   </p>
   <button onclick="mostrarSorpresa()">Haz clic aquí</button>
 </div>
 
 <!-- Corazones animados -->
 <script>
-  const hearts = ["💖","💕","💘","💝","💞"];
+  const hearts = ["💚","💚","💚","💚","💚"];
   for (let i = 0; i < 30; i++) {
     let heart = document.createElement("div");
     heart.classList.add("heart");
@@ -151,8 +165,22 @@
   function cerrarSorpresa() {
     document.getElementById("surprise").style.display = "none";
   }
+
+  // Generar letras Matrix (efecto sencillo)
+  const matrix = document.createElement('div');
+  matrix.classList.add('matrix');
+  for (let i = 0; i < 1000; i++) {
+    const span = document.createElement('span');
+    span.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
+    span.style.position = 'absolute';
+    span.style.left = `${Math.random() * 100}vw`;
+    span.style.top = `${Math.random() * 100}vh`;
+    matrix.appendChild(span);
+  }
+  document.body.appendChild(matrix);
 </script>
 
+<!-- Sorpresa -->
 <div id="surprise">
   <img src="mi_foto.jpg" alt="Foto Especial">
   <button onclick="cerrarSorpresa()">Cerrar</button>

@@ -106,6 +106,10 @@
     .vibrar {
       animation: vibrar 0.5s;
     }
+
+    @keyframes heartExplosion {
+      to { opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -170,9 +174,16 @@
       let heart = document.createElement("div");
       heart.textContent = "💖";
       heart.classList.add("emoji");
-      heart.style.left = `${window.innerWidth/2}px`;
-      heart.style.top = `${window.innerHeight/2}px`;
-      heart.style.animationDuration = (1 + Math.random()) + "s";
+      // Aparecen arriba (20px) y al centro
+      heart.style.left = `${window.innerWidth / 2}px`;
+      heart.style.top = `20px`;
+      // Movimiento aleatorio
+      const dx = (Math.random() * 600 - 300).toFixed(0);
+      const dy = (Math.random() * 400 + 200).toFixed(0);
+      const rotate = (Math.random() * 360).toFixed(0);
+      const scale = (Math.random() * 1.5 + 0.5).toFixed(2);
+      heart.style.animation = `heartExplosion 1s ease-out forwards`;
+      heart.style.transform = `translate(${dx}px, ${dy}px) rotate(${rotate}deg) scale(${scale})`;
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 1000);
     }

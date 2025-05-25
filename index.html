@@ -150,13 +150,28 @@ const palabras = [
     fuegosDeCorazones();
   }
 
-  function moverBoton() {
+function moverBoton() {
     const btnNo = document.getElementById("btnNo");
     const maxWidth = window.innerWidth - btnNo.offsetWidth;
     const maxHeight = window.innerHeight - btnNo.offsetHeight;
     btnNo.style.left = Math.random() * maxWidth + "px";
     btnNo.style.top = Math.random() * maxHeight + "px";
-  }
+    
+    // Frases chistosas
+    const frases = [
+        "¡No puedes decir que no! 😝",
+        "¡Atrápame si puedes! 😂",
+        "¡No hay escapatoria! 😜",
+        "¡No puedes negarlo! 😆",
+        "¡El amor es inevitable! 💖",
+        "¿En serio dirías que no? 🥺",
+        "¡Imposible resistirse! 🤪",
+        "¡Te amo demasiado para un no! 😘",
+        "¡No, no es una opción! 😂"
+    ];
+    alert(frases[Math.floor(Math.random() * frases.length)]);
+}
+
 </script>
 
 </body>

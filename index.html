@@ -1,30 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Mi App Romántica</title>
-    <style>
-        body {
-            background-color: #ffe6f0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #ff4d79;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #ff4d79;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Para Jaqueline 💖</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      animation: backgroundFade 10s infinite alternate;
+    }
+
+    @keyframes backgroundFade {
+      from { background-color: #ffe6f0; }
+      to { background-color: #ffb3c6; }
+    }
+
+    h1 {
+      color: #ff4d79;
+      font-size: 3em;
+      animation: fadeIn 2s ease-in;
+    }
+
+    p {
+      font-size: 18px;
+      animation: fadeIn 4s ease-in;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff4d79;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.3s;
+      animation: bounce 2s infinite;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+  </style>
 </head>
 <body>
-    <h1>💖 Hola, mi amor 💖</h1>
-    <p>Este pequeño espacio está hecho solo para ti. Cada día contigo es una nueva aventura, y esta app es solo un pequeño regalo para recordarte cuánto te amo. 💌</p>
-    <button onclick="alert('¡Te amo mucho!')">Haz clic aquí</button>
+  <h1>💖 Para Jaqueline 💖</h1>
+  <p>
+    Querida Jaqueline Alvarado,<br><br>
+    Este pequeño espacio está hecho solo para ti. Cada día contigo es una nueva aventura,  
+    y esta app es solo un pequeño regalo para recordarte cuánto te amo. 💌<br><br>
+    Gracias por ser mi compañera, mi amiga y mi inspiración. Eres el sol que ilumina mis días  
+    y la estrella que guía mis noches. Te amo más de lo que las palabras pueden decir. 🌟💖
+  </p>
+  <button onclick="alert('¡Te amo mucho, Jaqueline! 💕')">Haz clic aquí</button>
 </body>
 </html>

@@ -41,7 +41,8 @@
       border-radius: 30px;
       font-size: 1.2em;
       cursor: pointer;
-      margin-top: 20px;
+      margin: 10px;
+      position: absolute;
       animation: fadeIn 4s ease-in-out;
       transition: all 0.3s ease;
     }
@@ -68,6 +69,32 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    /* Toast */
+    #toast {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff69b4;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1em;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+      z-index: 999;
+    }
+
+    /* Vibración */
+    @keyframes vibrar {
+      0%, 100% { transform: translate(0); }
+      25% { transform: translate(5px, 0); }
+      50% { transform: translate(-5px, 0); }
+      75% { transform: translate(5px, 0); }
+    }
+    .vibrar {
+      animation: vibrar 0.5s;
+    }
   </style>
 </head>
 <body>
@@ -75,7 +102,11 @@
 <h1>💖 Jaqueline, ¿Quieres ser mi novia? 💖</h1>
 <p>Desde que te conocí, mi mundo cambió. Esta página es solo una pequeña muestra de lo que eres para mí. 💌</p>
 
-<button class="btn" onclick="mostrarMensaje()">Sí, quiero 💖</button>
+<button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
+<button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
+
+<!-- Toast -->
+<div id="toast">¡Frase divertida!</div>
 
 <!-- Emojis flotantes -->
 <script>
@@ -89,8 +120,58 @@
     document.body.appendChild(emoji);
   }
 
-  function mostrarMensaje() {
+  const btnNo = document.getElementById("btnNo");
+  const btnSi = document.getElementById("btnSi");
+  btnSi.style.top = "60%";
+  btnSi.style.left = "40%";
+  btnNo.style.top = "60%";
+  btnNo.style.left = "60%";
+
+  function mensajeSi() {
     alert("¡Sí quiero, Jaqueline! 💖💖💖");
+    fuegosDeCorazones();
+  }
+
+  function moverBoton() {
+    const maxWidth = window.innerWidth - btnNo.offsetWidth;
+    const maxHeight = window.innerHeight - btnNo.offsetHeight;
+    btnNo.style.left = Math.random() * maxWidth + "px";
+    btnNo.style.top = Math.random() * maxHeight + "px";
+
+    const frasesDivertidas = [
+      "¡No puedes decir que no! 😝",
+      "¡Atrápame si puedes! 😂",
+      "¡No hay escapatoria! 😜",
+      "¡No puedes negarlo! 😆",
+      "¡El amor es inevitable! 💖",
+      "¿En serio dirías que no? 🥺",
+      "¡Imposible resistirse! 🤪",
+      "¡Te amo demasiado para un no! 😘",
+      "¡No, no es una opción! 😂"
+    ];
+    mostrarToast(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
+    btnNo.classList.add('vibrar');
+    setTimeout(() => btnNo.classList.remove('vibrar'), 500);
+  }
+
+  function mostrarToast(mensaje) {
+    const toast = document.getElementById('toast');
+    toast.textContent = mensaje;
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 2000);
+  }
+
+  function fuegosDeCorazones() {
+    for (let i = 0; i < 30; i++) {
+      let heart = document.createElement("div");
+      heart.textContent = "💖";
+      heart.classList.add("emoji");
+      heart.style.left = `${window.innerWidth/2}px`;
+      heart.style.top = `${window.innerHeight/2}px`;
+      heart.style.animationDuration = (1 + Math.random()) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    }
   }
 </script>
 

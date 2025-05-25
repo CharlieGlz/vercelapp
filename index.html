@@ -3,48 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <title>💖 Para Jaqueline 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 20px;
       background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
       font-family: 'Roboto', sans-serif;
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       flex-direction: column;
       overflow: hidden;
+      text-align: center;
     }
 
     h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3em;
-      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 15px;
       animation: fadeIn 2s ease-in-out;
     }
 
     p {
-      font-size: 1.2em;
-      text-align: center;
-      max-width: 600px;
+      font-size: 1.1em;
+      max-width: 90%;
+      margin-bottom: 20px;
       animation: fadeIn 3s ease-in-out;
     }
 
     .btn {
-      padding: 12px 24px;
+      padding: 15px 30px;
       background-color: #ff69b4;
       color: #fff;
       border: none;
       border-radius: 30px;
-      font-size: 1.2em;
+      font-size: 1.3em;
       cursor: pointer;
       margin: 10px;
-      position: absolute;
       animation: fadeIn 4s ease-in-out;
       transition: all 0.3s ease;
+      width: 60%;
+      max-width: 250px;
     }
 
     .btn:hover {
@@ -54,7 +57,7 @@
 
     .emoji {
       position: absolute;
-      font-size: 30px;
+      font-size: 28px;
       animation: float 10s infinite linear;
       pointer-events: none;
     }
@@ -70,12 +73,11 @@
       to { opacity: 1; }
     }
 
-    /* Toast */
     #toast {
       display: none;
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 15px;
+      right: 15px;
       background-color: #ff69b4;
       color: #fff;
       padding: 10px 20px;
@@ -85,13 +87,13 @@
       z-index: 999;
     }
 
-    /* Vibración */
     @keyframes vibrar {
       0%, 100% { transform: translate(0); }
       25% { transform: translate(5px, 0); }
       50% { transform: translate(-5px, 0); }
       75% { transform: translate(5px, 0); }
     }
+
     .vibrar {
       animation: vibrar 0.5s;
     }
@@ -105,10 +107,8 @@
 <button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
 <button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
 
-<!-- Toast -->
 <div id="toast">¡Frase divertida!</div>
 
-<!-- Emojis flotantes -->
 <script>
   const emojis = ["💖", "💕", "💘", "💝", "💞", "🥰", "😘", "😍"];
   for (let i = 0; i < 30; i++) {
@@ -121,14 +121,9 @@
   }
 
   const btnNo = document.getElementById("btnNo");
-  const btnSi = document.getElementById("btnSi");
-  btnSi.style.top = "60%";
-  btnSi.style.left = "40%";
-  btnNo.style.top = "60%";
-  btnNo.style.left = "60%";
 
   function mensajeSi() {
-    alert("¡Sí quiero, Jaqueline! 💖💖💖");
+    alert("¡Te amo, Mi jaqueline! 💖💖💖");
     fuegosDeCorazones();
   }
 

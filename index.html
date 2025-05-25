@@ -82,20 +82,6 @@
       to { opacity: 1; }
     }
 
-    #toast {
-      display: none;
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background-color: #ff69b4;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 1em;
-      box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
-      z-index: 999;
-    }
-
     @keyframes vibrar {
       0%, 100% { transform: translate(0); }
       25% { transform: translate(5px, 0); }
@@ -118,9 +104,7 @@
 <p>Desde que te conocí, mi mundo cambió. Esta página es solo una pequeña muestra de lo que eres para mí. 💌</p>
 
 <button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
-<button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
-
-<div id="toast">¡Frase divertida!</div>
+<button id="btnNo" class="btn" onclick="moverBoton()">No 😜</button>
 
 <script>
   const emojis = ["💖", "💕", "💘", "💝", "💞", "🥰", "😘", "😍"];
@@ -155,18 +139,23 @@
       "¿En serio dirías que no? 🥺",
       "¡Imposible resistirse! 🤪",
       "¡Te amo demasiado para un no! 😘",
-      "¡No, no es una opción! 😂"
+      "¡No, no es una opción! 😂",
+      "¡Eres demasiado especial para negarte! 💘",
+      "¡No me puedes decir que no, por favor! 😍",
+      "¡El amor verdadero no acepta un no! 🥰",
+      "¡No, no y no! 😜",
+      "¡Ni lo pienses! 💝",
+      "¡Te atrapó mi corazón! 💞",
+      "¡Tu respuesta es solo sí! 💖",
+      "¡Te amo demasiado! 💘",
+      "¡Vamos, Jaqueline, di que sí! 😍",
+      "¡No hay no posible! 😂",
+      "¡Siempre juntos! 💝"
     ];
-    mostrarToast(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
+
+    alert(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
     btnNo.classList.add('vibrar');
     setTimeout(() => btnNo.classList.remove('vibrar'), 500);
-  }
-
-  function mostrarToast(mensaje) {
-    const toast = document.getElementById('toast');
-    toast.textContent = mensaje;
-    toast.style.display = 'block';
-    setTimeout(() => toast.style.display = 'none', 2000);
   }
 
   function explosionCorazones() {
@@ -174,10 +163,8 @@
       let heart = document.createElement("div");
       heart.textContent = "💖";
       heart.classList.add("emoji");
-      // Aparecen arriba (20px) y al centro
       heart.style.left = `${window.innerWidth / 2}px`;
       heart.style.top = `20px`;
-      // Movimiento aleatorio
       const dx = (Math.random() * 600 - 300).toFixed(0);
       const dy = (Math.random() * 400 + 200).toFixed(0);
       const rotate = (Math.random() * 360).toFixed(0);

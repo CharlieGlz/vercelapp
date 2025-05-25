@@ -22,6 +22,7 @@
     font-size: 3em;
     margin-bottom: 20px;
     text-align: center;
+    color: #ff69b4;
   }
 
   .btn {
@@ -75,12 +76,35 @@
 
   @keyframes firework {
     to {
-      transform: translate(
-        calc(var(--dx) * 1px),
-        calc(var(--dy) * 1px)
-      );
+      transform: translate(calc(var(--dx) * 1px), calc(var(--dy) * 1px));
       opacity: 0;
     }
+  }
+
+  /* Toast (mensaje flotante) */
+  #toast {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff69b4;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1em;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+    z-index: 999;
+  }
+
+  /* Vibración */
+  @keyframes vibrar {
+    0%, 100% { transform: translate(0); }
+    25% { transform: translate(5px, 0); }
+    50% { transform: translate(-5px, 0); }
+    75% { transform: translate(5px, 0); }
+  }
+  .vibrar {
+    animation: vibrar 0.5s;
   }
 </style>
 </head>
@@ -88,7 +112,10 @@
 
 <h1>💖 ¿Quieres ser mi novia, Jaqueline? 💖</h1>
 <button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
-<button id="btnNo" class="btn" onmouseover="moverBoton()">No</button>
+<button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
+
+<!-- Toast -->
+<div id="toast">¡Frase graciosa aquí!</div>
 
 <script>
   // Lluvia romántica
@@ -107,12 +134,6 @@
     word.style.animationDuration = (5 + Math.random() * 5) + "s";
     document.body.appendChild(word);
   }
-
-  // Emojis para el botón No
-  const emojis = ["😜", "😂", "🤣", "🤪", "🙃", "😝", "😆"];
-  const btnNo = document.getElementById("btnNo");
-  let emojiActual = emojis[Math.floor(Math.random() * emojis.length)];
-  btnNo.innerHTML = `No ${emojiActual}`;
 
   // Fuegos de corazones
   function fuegosDeCorazones() {
@@ -135,7 +156,8 @@
     fuegosDeCorazones();
   }
 
-  // Botón No con frases y cambio de emoji
+  // Botón No con toast y vibración
+  const btnNo = document.getElementById("btnNo");
   function moverBoton() {
     const maxWidth = window.innerWidth - btnNo.offsetWidth;
     const maxHeight = window.innerHeight - btnNo.offsetHeight;
@@ -153,11 +175,17 @@
       "¡Te amo demasiado para un no! 😘",
       "¡No, no es una opción! 😂"
     ];
-    alert(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
+    mostrarToast(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
 
-    // Cambiar emoji aleatoriamente
-    emojiActual = emojis[Math.floor(Math.random() * emojis.length)];
-    btnNo.innerHTML = `No ${emojiActual}`;
+    btnNo.classList.add('vibrar');
+    setTimeout(() => btnNo.classList.remove('vibrar'), 500);
+  }
+
+  function mostrarToast(mensaje) {
+    const toast = document.getElementById('toast');
+    toast.textContent = mensaje;
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 2000);
   }
 </script>
 

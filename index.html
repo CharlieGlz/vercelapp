@@ -1,191 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>💖 Para Jaqueline 💖</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
-    color: #ff69b4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-  }
-
-  h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #ff69b4;
-  }
-
-  .btn {
-    padding: 12px 24px;
-    background-color: #ff69b4;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin: 10px;
-    position: absolute;
-  }
-
-  #btnSi {
-    top: 60%;
-    left: 40%;
-  }
-
-  #btnNo {
-    top: 60%;
-    left: 60%;
-  }
-
-  .word {
-    position: absolute;
-    font-size: 24px;
-    color: #ff69b4;
-    animation: floatUp 10s linear infinite;
-    pointer-events: none;
-    padding: 5px 10px;
-    margin: 10px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 10px;
-    white-space: nowrap;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-  }
-
-  @keyframes floatUp {
-    from { transform: translateY(100vh); opacity: 1; }
-    to { transform: translateY(-10vh); opacity: 0; }
-  }
-
-  .firework {
-    position: absolute;
-    font-size: 30px;
-    color: #ff69b4;
-    animation: firework 1s linear forwards;
-    pointer-events: none;
-  }
-
-  @keyframes firework {
-    to {
-      transform: translate(calc(var(--dx) * 1px), calc(var(--dy) * 1px));
-      opacity: 0;
+  <meta charset="UTF-8">
+  <title>💖 Para Jaqueline 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      overflow: hidden;
     }
-  }
 
-  /* Toast (mensaje flotante) */
-  #toast {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #ff69b4;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 1em;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
-    z-index: 999;
-  }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-  /* Vibración */
-  @keyframes vibrar {
-    0%, 100% { transform: translate(0); }
-    25% { transform: translate(5px, 0); }
-    50% { transform: translate(-5px, 0); }
-    75% { transform: translate(5px, 0); }
-  }
-  .vibrar {
-    animation: vibrar 0.5s;
-  }
-</style>
+    p {
+      font-size: 1.2em;
+      text-align: center;
+      max-width: 600px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      margin-top: 20px;
+      animation: fadeIn 4s ease-in-out;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ff85a1;
+      transform: scale(1.1);
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 30px;
+      animation: float 10s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
-<h1>💖 ¿Quieres ser mi novia, Jaqueline? 💖</h1>
-<button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
-<button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
+<h1>💖 Jaqueline, ¿Quieres ser mi novia? 💖</h1>
+<p>Desde que te conocí, mi mundo cambió. Esta página es solo una pequeña muestra de lo que eres para mí. 💌</p>
 
-<!-- Toast -->
-<div id="toast">¡Frase graciosa aquí!</div>
+<button class="btn" onclick="mostrarMensaje()">Sí, quiero 💖</button>
 
+<!-- Emojis flotantes -->
 <script>
-  // Lluvia romántica
-  const palabras = [
-    "Corazon de melon", "Mi amorcito", "Te amo muchisimo", "💖",
-    "Me encantas", "Eres la mejor", "Besos infinitos", "Contigo hasta el fin del mundo",
-    "Eres mi sol", "Mi vida", "Juntos por siempre", "Eres mi todo", "Siempre a tu lado",
-    "Eres mi princesa", "Te quiero", "Tú y yo", "Amor eterno", "Mi corazon late por ti",
-    "Eres magia pura", "💘", "Mi mundo eres tú", "Siempre en mi corazón", "Mi reina", "💝"
-  ];
-  for (let i = 0; i < 50; i++) {
-    let word = document.createElement("div");
-    word.textContent = palabras[Math.floor(Math.random() * palabras.length)];
-    word.classList.add("word");
-    word.style.left = Math.random() * 100 + "vw";
-    word.style.animationDuration = (5 + Math.random() * 5) + "s";
-    document.body.appendChild(word);
+  const emojis = ["💖", "💕", "💘", "💝", "💞", "🥰", "😘", "😍"];
+  for (let i = 0; i < 30; i++) {
+    let emoji = document.createElement("div");
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.classList.add("emoji");
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.animationDuration = (10 + Math.random() * 10) + "s";
+    document.body.appendChild(emoji);
   }
 
-  // Fuegos de corazones
-  function fuegosDeCorazones() {
-    for (let i = 0; i < 30; i++) {
-      let heart = document.createElement("div");
-      heart.textContent = "💖";
-      heart.classList.add("firework");
-      heart.style.left = `${window.innerWidth/2}px`;
-      heart.style.top = `${window.innerHeight/2}px`;
-      heart.style.setProperty('--dx', (Math.random()*400 - 200).toFixed(0));
-      heart.style.setProperty('--dy', (Math.random()*-400).toFixed(0));
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1000);
-    }
-  }
-
-  // Botón Sí
-  function mensajeSi() {
-    alert("¡Yo también te amo, Jaqueline! 💖💖💖");
-    fuegosDeCorazones();
-  }
-
-  // Botón No con toast y vibración
-  const btnNo = document.getElementById("btnNo");
-  function moverBoton() {
-    const maxWidth = window.innerWidth - btnNo.offsetWidth;
-    const maxHeight = window.innerHeight - btnNo.offsetHeight;
-    btnNo.style.left = Math.random() * maxWidth + "px";
-    btnNo.style.top = Math.random() * maxHeight + "px";
-
-    const frasesDivertidas = [
-      "¡No puedes decir que no! 😝",
-      "¡Atrápame si puedes! 😂",
-      "¡No hay escapatoria! 😜",
-      "¡No puedes negarlo! 😆",
-      "¡El amor es inevitable! 💖",
-      "¿En serio dirías que no? 🥺",
-      "¡Imposible resistirse! 🤪",
-      "¡Te amo demasiado para un no! 😘",
-      "¡No, no es una opción! 😂"
-    ];
-    mostrarToast(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
-
-    btnNo.classList.add('vibrar');
-    setTimeout(() => btnNo.classList.remove('vibrar'), 500);
-  }
-
-  function mostrarToast(mensaje) {
-    const toast = document.getElementById('toast');
-    toast.textContent = mensaje;
-    toast.style.display = 'block';
-    setTimeout(() => toast.style.display = 'none', 2000);
+  function mostrarMensaje() {
+    alert("¡Sí quiero, Jaqueline! 💖💖💖");
   }
 </script>
 

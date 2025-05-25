@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
@@ -22,6 +22,7 @@
       flex-direction: column;
       color: #fff;
       animation: fadeIn 2s ease-out;
+      z-index: 1;
     }
 
     h1 {
@@ -65,16 +66,51 @@
     }
 
     .heart {
-      position: absolute;
+      position: fixed;
       font-size: 2em;
-      animation: floatUp 10s infinite;
+      animation: floatUp 10s linear infinite;
       color: #ff6b8a;
       opacity: 0.7;
+      z-index: 0;
     }
 
     @keyframes floatUp {
-      from { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      to { transform: translateY(-10vh) rotate(360deg); opacity: 1; }
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    #surprise {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center; align-items: center;
+      z-index: 999;
+    }
+
+    #surprise img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.8);
+    }
+
+    #surprise button {
+      margin-top: 20px;
+      background-color: #ff4d79;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -87,13 +123,13 @@
     Cada día contigo es una nueva aventura, y esta app es solo un pequeño regalo para recordarte cuánto te amo. 💌<br>
     Eres mi sol, mi estrella y mi inspiración. Te amo más de lo que las palabras pueden decir. 🌟💖
   </p>
-  <button onclick="alert('¡Te amo mucho, Jaqueline! 💕')">Haz clic aquí</button>
+  <button onclick="mostrarSorpresa()">Haz clic aquí</button>
 </div>
 
 <!-- Corazones animados -->
 <script>
   const hearts = ["💖","💕","💘","💝","💞"];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 50; i++) { // Aumentamos cantidad de corazones
     let heart = document.createElement("div");
     heart.classList.add("heart");
     heart.style.left = Math.random() * 100 + "vw";
@@ -101,6 +137,25 @@
     heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
     document.body.appendChild(heart);
   }
+</script>
+
+<!-- Sorpresa con foto -->
+<div id="surprise">
+  <div>
+    <img src="https://drive.google.com/file/d/1mkbw_w0hky8qyKMzFkjArhLhduH-b4BJ/view?usp=drive_link" alt="Foto Especial">
+    <br>
+    <button onclick="cerrarSorpresa()">Cerrar</button>
+  </div>
+</div>
+
+<script>
+function mostrarSorpresa() {
+  document.getElementById("surprise").style.display = "flex";
+}
+
+function cerrarSorpresa() {
+  document.getElementById("surprise").style.display = "none";
+}
 </script>
 
 </body>

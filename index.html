@@ -22,7 +22,6 @@
     font-size: 3em;
     margin-bottom: 20px;
     text-align: center;
-    color: #ff69b4;
   }
 
   .btn {
@@ -89,7 +88,7 @@
 
 <h1>💖 ¿Quieres ser mi novia, Jaqueline? 💖</h1>
 <button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
-<button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
+<button id="btnNo" class="btn" onmouseover="moverBoton()">No</button>
 
 <script>
   // Lluvia romántica
@@ -108,6 +107,12 @@
     word.style.animationDuration = (5 + Math.random() * 5) + "s";
     document.body.appendChild(word);
   }
+
+  // Emojis para el botón No
+  const emojis = ["😜", "😂", "🤣", "🤪", "🙃", "😝", "😆"];
+  const btnNo = document.getElementById("btnNo");
+  let emojiActual = emojis[Math.floor(Math.random() * emojis.length)];
+  btnNo.innerHTML = `No ${emojiActual}`;
 
   // Fuegos de corazones
   function fuegosDeCorazones() {
@@ -130,9 +135,8 @@
     fuegosDeCorazones();
   }
 
-  // Botón No con frases graciosas
+  // Botón No con frases y cambio de emoji
   function moverBoton() {
-    const btnNo = document.getElementById("btnNo");
     const maxWidth = window.innerWidth - btnNo.offsetWidth;
     const maxHeight = window.innerHeight - btnNo.offsetHeight;
     btnNo.style.left = Math.random() * maxWidth + "px";
@@ -150,6 +154,10 @@
       "¡No, no es una opción! 😂"
     ];
     alert(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
+
+    // Cambiar emoji aleatoriamente
+    emojiActual = emojis[Math.floor(Math.random() * emojis.length)];
+    btnNo.innerHTML = `No ${emojiActual}`;
   }
 </script>
 

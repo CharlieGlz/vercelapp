@@ -112,17 +112,25 @@
       border-radius: 10px;
     }
 
-    /* Efecto Matrix: caida de texto aleatorio */
     .matrix {
       position: fixed;
       width: 100%;
       height: 100%;
-      background-color: black;
-      color: #0f0;
-      font-size: 14px;
       pointer-events: none;
-      opacity: 0.2;
       z-index: 0;
+    }
+
+    .matrix span {
+      position: absolute;
+      color: #00ff00;
+      font-size: 16px;
+      animation: fall 10s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100%); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
     }
   </style>
 </head>
@@ -138,8 +146,21 @@
   <button onclick="mostrarSorpresa()">Haz clic aquí</button>
 </div>
 
-<!-- Corazones animados -->
+<!-- Fondo estilo Matrix con "TE AMO" cayendo -->
 <script>
+  const matrix = document.createElement('div');
+  matrix.classList.add('matrix');
+  document.body.appendChild(matrix);
+
+  for (let i = 0; i < 100; i++) {
+    const span = document.createElement('span');
+    span.textContent = 'TE AMO';
+    span.style.left = `${Math.random() * 100}vw`;
+    span.style.animationDuration = `${5 + Math.random() * 5}s`;
+    matrix.appendChild(span);
+  }
+
+  // Corazones flotantes iniciales
   const hearts = ["💚","💚","💚","💚","💚"];
   for (let i = 0; i < 30; i++) {
     let heart = document.createElement("div");
@@ -165,22 +186,8 @@
   function cerrarSorpresa() {
     document.getElementById("surprise").style.display = "none";
   }
-
-  // Generar letras Matrix (efecto sencillo)
-  const matrix = document.createElement('div');
-  matrix.classList.add('matrix');
-  for (let i = 0; i < 1000; i++) {
-    const span = document.createElement('span');
-    span.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
-    span.style.position = 'absolute';
-    span.style.left = `${Math.random() * 100}vw`;
-    span.style.top = `${Math.random() * 100}vh`;
-    matrix.appendChild(span);
-  }
-  document.body.appendChild(matrix);
 </script>
 
-<!-- Sorpresa -->
 <div id="surprise">
   <img src="mi_foto.jpg" alt="Foto Especial">
   <button onclick="cerrarSorpresa()">Cerrar</button>

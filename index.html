@@ -46,13 +46,20 @@
     left: 60%;
   }
 
-  .word {
+.word {
     position: absolute;
     font-size: 24px;
     color: #ff69b4;
     animation: floatUp 10s linear infinite;
     pointer-events: none;
-  }
+    padding: 5px 10px;          /* Espacio interno */
+    margin: 10px;               /* Espacio externo */
+    background: rgba(0,0,0,0.3); /* Fondo sutil para destacar */
+    border-radius: 10px;        /* Bordes redondeados */
+    white-space: nowrap;        /* Evitar cortes */
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* Sombra para resaltar */
+}
+
 
   @keyframes floatUp {
     from { transform: translateY(100vh); opacity: 1; }

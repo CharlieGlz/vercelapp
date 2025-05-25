@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 30px;
-      background: #fff0f5;
+      background: linear-gradient(135deg, #1f0030 0%, #4b0082 100%);
       font-family: 'Roboto', sans-serif;
       color: #ff69b4;
       display: flex;
@@ -29,6 +29,7 @@
       font-size: 2.5em;
       margin-bottom: 15px;
       animation: fadeInLetters 2s ease-in-out;
+      color: #ff85c1;
     }
 
     @keyframes fadeInLetters {
@@ -37,31 +38,32 @@
     }
 
     p {
-      font-size: 1.1em;
+      font-size: 1.2em;
       max-width: 90%;
       margin-bottom: 20px;
       animation: fadeIn 3s ease-in-out;
+      color: #ffb6d9;
     }
 
     .btn {
       padding: 15px 30px;
-      background-color: #ff69b4;
+      background-color: #ff1493;
       color: #fff;
       border: none;
-      border-radius: 15px;
-      font-size: 1.3em;
+      border-radius: 20px;
+      font-size: 1.4em;
       cursor: pointer;
       margin: 10px;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 10px rgba(255, 105, 180, 0.3);
+      box-shadow: 0 5px 15px rgba(255, 20, 147, 0.6);
       width: 60%;
       max-width: 250px;
     }
 
     .btn:hover {
-      background-color: #ff85a1;
+      background-color: #ff69b4;
       transform: scale(1.1);
-      box-shadow: 0 8px 15px rgba(255, 105, 180, 0.4);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.7);
     }
 
     .emoji {
@@ -121,7 +123,7 @@
 
   function mensajeSi() {
     explosionCorazones();
-    setTimeout(() => alert("¡te amo mi corazón de melón! 💖💖💖"), 500);
+    setTimeout(() => alert("¡Te amo mi corazón de melón! 💖💖💖"), 500);
   }
 
   function animarBotonNo() {

@@ -30,11 +30,11 @@
     color: #ff69b4;
   }
 
-  p, #frase, #countdown {
+  p {
     font-size: 1.2em;
     max-width: 600px;
     color: #ffb6c1;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
   button {
@@ -55,81 +55,38 @@
     transform: scale(1.1);
   }
 
-  .matrix, .stars {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .matrix span {
+  .globo {
     position: absolute;
-    color: #ff69b4;
-    font-size: 20px;
-    font-weight: bold;
-    opacity: 0.7;
-    animation: fall 10s linear infinite;
+    font-size: 30px;
+    animation: flotar 10s linear infinite;
   }
 
-  @keyframes fall {
-    0% { transform: translateY(-100%); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
+  @keyframes flotar {
+    from { transform: translateY(100vh); opacity: 0; }
+    to { transform: translateY(-10vh); opacity: 1; }
   }
 
-  .sparkle {
+  .corazon {
     position: absolute;
-    font-size: 24px;
-    color: #ff69b4;
-    animation: sparkle 1s linear forwards;
-    pointer-events: none;
+    font-size: 50px;
+    cursor: pointer;
+    animation: pulse 3s infinite;
   }
 
-  @keyframes sparkle {
-    from { transform: scale(1); opacity: 1; }
-    to { transform: scale(2); opacity: 0; }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
   }
 
-  #surprise {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    justify-content: center; align-items: center;
-    z-index: 999;
-    flex-direction: column;
-  }
-
-  #surprise img {
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 15px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.8);
-  }
-
-  #surprise button {
-    margin-top: 20px;
-    background-color: #ff69b4;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-  }
-
-  /* Estrellas titilantes */
-  .star {
+  .confeti {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #fff;
-    animation: twinkle 3s infinite;
-    opacity: 0.8;
+    font-size: 30px;
+    animation: caer 5s linear forwards;
   }
 
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 0.2; }
+  @keyframes caer {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(100vh); }
   }
 </style>
 </head>
@@ -137,88 +94,64 @@
 
 <div class="container">
   <h1>💖 Para Jaqueline 💖</h1>
-  <p>
-    Querida Jaqueline Alvarado, cada día contigo es una nueva aventura, y esta app es solo un pequeño regalo para recordarte cuánto te amo. 💌
-  </p>
-  <p id="frase"></p>
-  <p id="countdown"></p>
-  <button onclick="mostrarSorpresa()">Ver Foto Sorpresa</button>
-  <button onclick="document.getElementById('music').play()">🎶 Reproducir música</button>
-  <button onclick="document.getElementById('music').pause()">⏸️ Pausar música</button>
+  <p>Querida Jaqueline, eres mi sol y mi luna, mi razón de sonreír. 💌</p>
+  <button onclick="mensajeSorpresa()">💬 Mensaje sorpresa</button>
+  <button onclick="confeti()">🎉 Explosión de confeti</button>
 </div>
 
-<audio id="music" loop>
-  <source src="tu_cancion.mp3" type="audio/mp3">
-</audio>
+<!-- Mini-juego de corazones -->
+<div id="corazones"></div>
 
+<!-- Globos flotantes 🎈 -->
 <script>
-  // Fondo "TE AMO"
-  const matrix = document.createElement('div');
-  matrix.classList.add('matrix');
-  document.body.appendChild(matrix);
-  for (let i = 0; i < 200; i++) {
-    const span = document.createElement('span');
-    span.textContent = 'TE AMO';
-    span.style.left = `${Math.random() * 100}vw`;
-    span.style.animationDuration = `${5 + Math.random() * 10}s`;
-    matrix.appendChild(span);
+  const globos = ["🎈","🎉","🎊","💝"];
+  for (let i = 0; i < 30; i++) {
+    let globo = document.createElement("div");
+    globo.classList.add("globo");
+    globo.innerText = globos[Math.floor(Math.random() * globos.length)];
+    globo.style.left = Math.random() * 100 + "vw";
+    globo.style.animationDuration = (10 + Math.random() * 10) + "s";
+    document.body.appendChild(globo);
   }
 
-  // Estrellas titilantes
-  const stars = document.createElement('div');
-  stars.classList.add('stars');
-  document.body.appendChild(stars);
-  for (let i = 0; i < 100; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.left = `${Math.random() * 100}vw`;
-    star.style.top = `${Math.random() * 100}vh`;
-    stars.appendChild(star);
+  // Mini-juego: elige un corazón
+  for(let i=0;i<5;i++){
+    let c=document.createElement("div");
+    c.innerHTML="💖";
+    c.classList.add("corazon");
+    c.style.left=Math.random()*80+"vw";
+    c.style.top=Math.random()*80+"vh";
+    c.onclick=function(){
+      alert("¡Te ganaste un 'Te Amo' extra! 💖");
+    }
+    document.getElementById("corazones").appendChild(c);
   }
 
-  // Frases románticas
-  const frases = ["Eres mi vida", "Siempre juntos", "Te amo cada día más", "Gracias por estar a mi lado"];
-  let index = 0;
-  setInterval(() => {
-    document.getElementById("frase").textContent = frases[index];
-    index = (index + 1) % frases.length;
-  }, 3000);
-
-  // Cuenta regresiva (ejemplo aniversario)
-  const eventDate = new Date("2025-06-14T00:00:00");
-  setInterval(() => {
-    const now = new Date();
-    const diff = eventDate - now;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    document.getElementById("countdown").textContent = `Faltan ${days} días para nuestro aniversario 💕`;
-  }, 1000);
-
-  // Chispa de corazones
-  document.addEventListener('mousemove', sparkle);
-  document.addEventListener('touchmove', (e) => sparkle(e.touches[0]));
-  function sparkle(e) {
-    const sparkle = document.createElement('div');
-    sparkle.classList.add('sparkle');
-    sparkle.textContent = '💖';
-    sparkle.style.left = `${e.clientX || e.pageX}px`;
-    sparkle.style.top = `${e.clientY || e.pageY}px`;
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 1000);
+  // Mensaje sorpresa aleatorio
+  function mensajeSorpresa() {
+    const frases = [
+      "Eres mi persona favorita 💕",
+      "Tu sonrisa ilumina mis días 🌟",
+      "A tu lado todo es magia ✨",
+      "¿Sabías que eres mi sol y mi luna? 🌞🌙",
+      "Te amo más de lo que las palabras pueden decir 💖"
+    ];
+    alert(frases[Math.floor(Math.random() * frases.length)]);
   }
 
-  function mostrarSorpresa() {
-    document.getElementById("surprise").style.display = "flex";
-  }
-  function cerrarSorpresa() {
-    document.getElementById("surprise").style.display = "none";
+  // Explosión de confeti 🎉
+  function confeti() {
+    for (let i = 0; i < 50; i++) {
+      let conf = document.createElement("div");
+      conf.textContent = "🎉";
+      conf.classList.add("confeti");
+      conf.style.left = `${Math.random() * 100}vw`;
+      conf.style.top = `${Math.random() * 100}vh`;
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 5000);
+    }
   }
 </script>
-
-<!-- Sorpresa -->
-<div id="surprise">
-  <img src="mi_foto.jpeg" alt="Foto Especial">
-  <button onclick="cerrarSorpresa()">Cerrar</button>
-</div>
 
 </body>
 </html>

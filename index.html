@@ -104,7 +104,7 @@
 <p>Desde que te conocí, mi mundo cambió. Esta página es solo una pequeña muestra de lo que eres para mí. 💌</p>
 
 <button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
-<button id="btnNo" class="btn" onclick="moverBoton()">No 😜</button>
+<button id="btnNo" class="btn" onclick="animarBotonNo()">No 😜</button>
 
 <script>
   const emojis = ["💖", "💕", "💘", "💝", "💞", "🥰", "😘", "😍"];
@@ -124,12 +124,7 @@
     setTimeout(() => alert("¡Sí quiero, Jaqueline! 💖💖💖"), 500);
   }
 
-  function moverBoton() {
-    const maxWidth = window.innerWidth - btnNo.offsetWidth;
-    const maxHeight = window.innerHeight - btnNo.offsetHeight;
-    btnNo.style.left = Math.random() * maxWidth + "px";
-    btnNo.style.top = Math.random() * maxHeight + "px";
-
+  function animarBotonNo() {
     const frasesDivertidas = [
       "¡No puedes decir que no! 😝",
       "¡Atrápame si puedes! 😂",
@@ -152,7 +147,6 @@
       "¡No hay no posible! 😂",
       "¡Siempre juntos! 💝"
     ];
-
     alert(frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)]);
     btnNo.classList.add('vibrar');
     setTimeout(() => btnNo.classList.remove('vibrar'), 500);

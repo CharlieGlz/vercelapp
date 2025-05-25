@@ -9,19 +9,20 @@
     padding: 0;
     background-color: #000;
     font-family: 'Arial', sans-serif;
+    overflow: hidden;
     color: #ff69b4;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
-    overflow: hidden;
   }
 
   h1 {
     font-size: 3em;
     margin-bottom: 20px;
     text-align: center;
+    color: #ff69b4;
   }
 
   .btn {
@@ -45,6 +46,43 @@
     top: 60%;
     left: 60%;
   }
+
+  .globo {
+    position: absolute;
+    font-size: 30px;
+    animation: flotar 10s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes flotar {
+    from { transform: translateY(100vh); opacity: 0; }
+    to { transform: translateY(-10vh); opacity: 1; }
+  }
+
+  .sparkle {
+    position: absolute;
+    font-size: 24px;
+    color: #ff69b4;
+    animation: sparkle 1s linear forwards;
+    pointer-events: none;
+  }
+
+  @keyframes sparkle {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(2); opacity: 0; }
+  }
+
+  .confeti {
+    position: absolute;
+    font-size: 30px;
+    animation: caer 5s linear forwards;
+    pointer-events: none;
+  }
+
+  @keyframes caer {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(100vh); }
+  }
 </style>
 </head>
 <body>
@@ -53,18 +91,57 @@
 <button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
 <button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
 
+<!-- Globos flotantes 🎈 -->
 <script>
-function mensajeSi() {
-  alert("¡Yo también te amo, Jaqueline! 💖💖💖");
-}
+  const globos = ["🎈","🎉","🎊","💝"];
+  for (let i = 0; i < 30; i++) {
+    let globo = document.createElement("div");
+    globo.classList.add("globo");
+    globo.innerText = globos[Math.floor(Math.random() * globos.length)];
+    globo.style.left = Math.random() * 100 + "vw";
+    globo.style.animationDuration = (10 + Math.random() * 10) + "s";
+    document.body.appendChild(globo);
+  }
 
-function moverBoton() {
-  const btnNo = document.getElementById("btnNo");
-  const maxWidth = window.innerWidth - btnNo.offsetWidth;
-  const maxHeight = window.innerHeight - btnNo.offsetHeight;
-  btnNo.style.left = Math.random() * maxWidth + "px";
-  btnNo.style.top = Math.random() * maxHeight + "px";
-}
+  function mensajeSi() {
+    alert("¡Yo también te amo, Jaqueline! 💖💖💖");
+    confeti();
+  }
+
+  function moverBoton() {
+    const btnNo = document.getElementById("btnNo");
+    const maxWidth = window.innerWidth - btnNo.offsetWidth;
+    const maxHeight = window.innerHeight - btnNo.offsetHeight;
+    btnNo.style.left = Math.random() * maxWidth + "px";
+    btnNo.style.top = Math.random() * maxHeight + "px";
+  }
+
+  // Chispa de corazones al pasar
+  document.addEventListener('mousemove', sparkle);
+  document.addEventListener('touchmove', (e) => sparkle(e.touches[0]));
+
+  function sparkle(e) {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.textContent = '💖';
+    sparkle.style.left = `${e.clientX || e.pageX}px`;
+    sparkle.style.top = `${e.clientY || e.pageY}px`;
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+
+  // Explosión de confeti 🎉
+  function confeti() {
+    for (let i = 0; i < 50; i++) {
+      let conf = document.createElement("div");
+      conf.textContent = "🎉";
+      conf.classList.add("confeti");
+      conf.style.left = `${Math.random() * 100}vw`;
+      conf.style.top = `${Math.random() * 100}vh`;
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 5000);
+    }
+  }
 </script>
 
 </body>

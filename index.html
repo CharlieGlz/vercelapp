@@ -80,13 +80,39 @@
 </head>
 <body>
 
-<h1>💖 ¿Me amas, Jaqueline? 💖</h1>
+<h1>💖 ¿Me amas, Mi Jaqueline?😐 💖</h1>
 <button id="btnSi" class="btn" onclick="mensajeSi()">Sí 💖</button>
 <button id="btnNo" class="btn" onmouseover="moverBoton()">No 😜</button>
 
 <script>
   // Lluvia romántica
-  const palabras = ["Amor", "Jaqueline", "Forever", "💖", "Besos", "Cariño"];
+const palabras = [
+  "Corazon de melon", 
+  "Mi amorcito", 
+  "Te amo muchisimo", 
+  "💖", 
+  "Me encantas", 
+  "Eres la mejor", 
+  "Besos infinitos", 
+  "Contigo hasta el fin del mundo", 
+  "Eres mi sol", 
+  "Mi vida", 
+  "Juntos por siempre", 
+  "Eres mi todo", 
+  "Siempre a tu lado", 
+  "Eres mi princesa", 
+  "Te quiero", 
+  "Tú y yo", 
+  "Amor eterno", 
+  "Mi corazon late por ti", 
+  "Eres magia pura", 
+  "💘", 
+  "Mi mundo eres tú", 
+  "Siempre en mi corazón", 
+  "Mi reina", 
+  "💝"
+];
+
   for (let i = 0; i < 50; i++) {
     let word = document.createElement("div");
     word.textContent = palabras[Math.floor(Math.random() * palabras.length)];
@@ -113,7 +139,7 @@
 
   // Botones
   function mensajeSi() {
-    alert("¡Yo también te amo, Jaqueline! 💖💖💖");
+    alert("¡Yo también te amo,Mi Jaqueline! 💖💖💖");
     fuegosDeCorazones();
   }
 

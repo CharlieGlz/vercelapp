@@ -75,17 +75,9 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
     }
 
     #surprise {
@@ -95,13 +87,17 @@
       background: rgba(0, 0, 0, 0.8);
       justify-content: center; align-items: center;
       z-index: 999;
+      flex-direction: column;
     }
 
     #surprise img {
       max-width: 90%;
       max-height: 90%;
+      width: auto;
+      height: auto;
       border-radius: 15px;
       box-shadow: 0 0 30px rgba(255,255,255,0.8);
+      transition: transform 0.3s ease;
     }
 
     #surprise button {
@@ -126,10 +122,10 @@
   <button onclick="mostrarSorpresa()">Haz clic aquí</button>
 </div>
 
-<!-- Corazones animados -->
+<!-- Corazones animados iniciales -->
 <script>
   const hearts = ["💖","💕","💘","💝","💞"];
-  for (let i = 0; i < 50; i++) { // Aumentamos cantidad de corazones
+  for (let i = 0; i < 30; i++) {
     let heart = document.createElement("div");
     heart.classList.add("heart");
     heart.style.left = Math.random() * 100 + "vw";
@@ -137,26 +133,30 @@
     heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
     document.body.appendChild(heart);
   }
+
+  function mostrarSorpresa() {
+    document.getElementById("surprise").style.display = "flex";
+    // Agregar más corazones al hacer clic
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      document.body.appendChild(heart);
+    }
+  }
+
+  function cerrarSorpresa() {
+    document.getElementById("surprise").style.display = "none";
+  }
 </script>
 
+<!-- Sorpresa con imagen local -->
 <div id="surprise">
-  <div>
-   <img src="mi_foto.jpeg" alt="Foto Especial">
-    <br>
-    <button onclick="cerrarSorpresa()">Cerrar</button>
-  </div>
+  <img src="mi_foto.jpg" alt="Foto Especial">
+  <button onclick="cerrarSorpresa()">Cerrar</button>
 </div>
-
-
-<script>
-function mostrarSorpresa() {
-  document.getElementById("surprise").style.display = "flex";
-}
-
-function cerrarSorpresa() {
-  document.getElementById("surprise").style.display = "none";
-}
-</script>
 
 </body>
 </html>
